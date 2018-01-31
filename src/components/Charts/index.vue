@@ -1,9 +1,5 @@
 <template>  
-   <div 
-      class="default-chart"
-      :style="{width, height}"
-   >
-   </div>
+   <div class="default-chart" :style="{width, height}"></div>
 </template>
 
 <script>
@@ -15,7 +11,24 @@ import throttle from '../../utils/throttle';
 
 export default {
    name: 'basic-echarts',
-   props: ['options'],
+   props: {
+      renderer: {
+         type: String,
+         required: false
+      },
+      option: {
+         type: Object,
+         default: () => ({}),
+      },
+      notMerge: {
+         type: Boolean,
+         default: false
+      },
+      lazyUpdate: {
+         type: Boolean,
+         default: false
+      }
+   },
    data() {
       return {
          chart: null,
@@ -25,19 +38,19 @@ export default {
    },
    methods: {
       initChart(el) {
-         return new Promise((resolve) => {
-            setTimeout(() => {
-               this.chart = echarts.init(el, null, {renderer: 'svg', width: 'auto', height: 'auto'});
-               resolve();
-            }, 0);
-         })
+         const renderer = this.renderer || 'canvas';
+         console.log(renderer);
+         this.chart = echarts.init(el, null, {
+            renderer, width: 'auto', height: 'auto'
+         });
       },
-      setOption(args) {
+      setOption(option) {
          if (!this.chart) {
             return;
          }
-		
-         const {option = {}, notMerge = false, lazyUpdate = false} = args;
+
+         const notMerge = this.notMerge;
+         const lazyUpdate = this.lazyUpdate;
          
          this.chart.setOption(option, notMerge, lazyUpdate);
       },
@@ -57,10 +70,10 @@ export default {
       }
    },
    mounted() {
-      this.$nextTick(async function () {
+      this.$nextTick(function () {
          console.log('did mount');
-         await this.initChart(this.$el);
-         this.setOption(this.options);
+         this.initChart(this.$el);
+         this.setOption(this.option);
          window.addEventListener('resize', throttle(this.resize, 100));
       })
    },
@@ -68,9 +81,9 @@ export default {
       this.dispose();
    },
    watch: {
-      options(newOpts) {
-         console.log('update options');
-         this.setOption(newOpts);
+      option(newOpt) {
+         console.log('update config');
+         this.setOption(newOpt);
       }
    }
 };

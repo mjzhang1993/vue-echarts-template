@@ -16,6 +16,9 @@ yarn run build
 
 # build for production and view the bundle analyzer report
 yarn run build --report
+
+# run dev server
+yarn run server
 ```
 
 使用 `yarn` 代替 `npm` 需要先安装 `yarn`

@@ -1,8 +1,8 @@
 <template>
    <ul class="menu-container">
-      <li class="menu-item" v-for="routeName in routeNames" :key="routeName">
-         <router-link :to="{name: routeName}">
-            {{routeName.toUpperCase()}}
+      <li class="menu-item" v-for="path in routePaths" :key="path">
+         <router-link :to="{path}">
+            {{path.toUpperCase()}}
          </router-link>
       </li>
    </ul>
@@ -13,7 +13,7 @@ export default {
    name: 'side-bar',
    data() {
       return {
-         routeNames: [
+         routePaths: [
             'bar', 'line', 'pie'
          ]
       }

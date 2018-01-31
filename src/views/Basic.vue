@@ -10,8 +10,7 @@
 				<p>{{title}}</p>
 			</header>
 			<div class="charts">
-				<Chart :options="{option}"/>
-				<!-- <router-view></router-view> -->
+				<router-view></router-view>
 			</div>
 		</div>
 	</div>
@@ -19,16 +18,7 @@
 </template>
 
 <script>
-import 'echarts/lib/component/tooltip';
-import 'echarts/lib/component/title';
-import 'echarts/lib/component/grid';
-import 'echarts/map/js/china';
-
-// 引入图形
-import 'echarts/lib/chart/bar';
-import 'echarts/lib/chart/line';
 import SideBar from '../components/Basic/SideBar';
-import Chart from '../components/Charts/index';
 
 export default {
    name: 'basic',
@@ -38,42 +28,7 @@ export default {
          title: 'this is title'
       };
    },
-   computed: {
-      option() {
-         return {
-            title: {
-               top: 30,
-               left: 'center',
-               text: '2018 每天步数'
-            },
-            tooltip: {},
-            grid: {
-               left: '3%',
-               right: '4%',
-               bottom: '3%',
-               containLabel: true
-            },
-            xAxis: [
-               {
-                  type: 'category'
-               }
-            ],
-            yAxis: {},
-            dataset: {
-               source: [
-                  ['Matcha Latte', 43.3, 85.8, 93.7],
-                  ['Milk Tea', 83.1, 73.4, 55.1],
-                  ['Cheese Cocoa', 86.4, 65.2, 82.5],
-                  ['Walnut Brownie', 72.4, 53.9, 39.1]
-               ],
-               dimensions: ['product', '2015', '2016', '2017'], // 维度信息
-               sourceHeader: null // 第一行是否是维度信息
-            },
-            series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }]
-         };
-      }
-   },
-   components: { SideBar, Chart }
+   components: { SideBar }
 };
 </script>
 

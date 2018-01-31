@@ -5,11 +5,13 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import rootSetting from './root-setting';
 import basic from './modules/basic';
+import charts from './modules/charts';
 
 Vue.use(Vuex);
 
 const modules = {
-   basic
+   basic,
+   charts
 };
 
 const store = new Vuex.Store({
