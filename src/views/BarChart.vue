@@ -29,8 +29,8 @@ export default {
             '9月',
             '10月',
             '11月',
-            '12月'
-         ]
+            '12月',
+         ],
       };
    },
    computed: {
@@ -40,25 +40,27 @@ export default {
             title: { text: '遮住混合', subtext: '可切换堆叠' },
             tooltip: {
                trigger: 'axis',
-               axisPointer: { type: 'cross', snap: true }
+               axisPointer: { type: 'cross', snap: true },
             },
             dataset: {
                // 提供一份数据。
-               source: this.currentData.map((cur, idx) => [this.month[idx]].concat(cur))
+               source: this.currentData.map((cur, idx) =>
+                  [this.month[idx]].concat(cur),
+               ),
             },
             legend: {
                left: 'right',
                top: 'top',
-               data: ['蒸发量', '降水量', '温度']
+               data: ['蒸发量', '降水量', '温度'],
             },
             // 声明一个 X 轴，类目轴（category）。默认情况下，类目轴对应到 dataset 第一列。
             xAxis: [
                {
                   type: 'category',
                   axisPointer: {
-                     type: 'shadow'
-                  }
-               }
+                     type: 'shadow',
+                  },
+               },
             ],
             // 声明一个 Y 轴，数值轴。
             yAxis: [
@@ -69,8 +71,8 @@ export default {
                   max: 500,
                   interval: 50,
                   axisLabel: {
-                     formatter: '{value} ml'
-                  }
+                     formatter: '{value} ml',
+                  },
                },
                {
                   type: 'value',
@@ -79,17 +81,23 @@ export default {
                   max: 25,
                   interval: 5,
                   axisLabel: {
-                     formatter: '{value} °C'
-                  }
-               }
+                     formatter: '{value} °C',
+                  },
+               },
             ],
             toolbox: {
                left: 'center',
                feature: {
                   saveAsImage: {},
                   restore: {},
-                  magicType: { type: ['bar', 'line'] }
-               }
+                  magicType: {
+                     type: ['bar', 'line', 'stack', 'tiled'],
+                     seriesIndex: {
+                        stack: [0, 1],
+                        tiled: [0, 1],
+                     },
+                  },
+               },
             },
             // 声明多个系列，默认情况下，每个系列会自动对应到 dataset 的每一列。
             series: [
@@ -105,20 +113,21 @@ export default {
                      position: 'insideBottom',
                      rotate: 30,
                   },
-                  stack: 'water', // 堆叠，将需要堆叠的设置同一个名称即可
-                  encode: { // 定义映射的维度
+                  // stack: 'water', // 堆叠，将需要堆叠的设置同一个名称即可
+                  encode: {
+                     // 定义映射的维度
                      x: 0,
                      y: 1,
-                  }
+                  },
                },
                {
                   type: 'bar',
                   name: '蒸发量',
-                  stack: 'water',
+                  // stack: 'water',
                   encode: {
                      x: 0,
                      y: 2,
-                  }
+                  },
                },
                {
                   type: 'line',
@@ -126,15 +135,15 @@ export default {
                   yAxisIndex: 1,
                   encode: {
                      x: 0,
-                     y: 3
-                  }
-               }
-            ]
+                     y: 3,
+                  },
+               },
+            ],
          };
-      }
+      },
    },
    methods: {
-      ...mapActions('charts', ['changeData'])
+      ...mapActions('charts', ['changeData']),
    },
    async beforeMount() {
       const path = '/bar';
@@ -143,7 +152,7 @@ export default {
       await this.changeData({ path, key });
    },
    // config 是引用组件时传入的组件配置，内容相当于 this.config
-   components: { Chart }
+   components: { Chart },
 };
 </script>
 

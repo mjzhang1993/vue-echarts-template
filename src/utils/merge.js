@@ -9,13 +9,13 @@ import Vue from 'vue';
 export function classifyProps(obj, propsMap) {
    let tempProps = {};
 
-   Object.keys(propsMap).forEach((item) => {
+   Object.keys(propsMap).forEach(item => {
       if (obj.hasOwnProperty(item)) {
          tempProps[item] = propsMap[item];
       } else {
          Vue.set(obj, item, propsMap[item]);
       }
-   })
+   });
 
    return tempProps;
 }
@@ -23,9 +23,9 @@ export function classifyProps(obj, propsMap) {
 export default function merge(obj, ...propsMapList) {
    let mergeProps = {};
 
-   propsMapList.forEach((propsMap) => {
+   propsMapList.forEach(propsMap => {
       mergeProps = Object.assign(mergeProps, classifyProps(obj, propsMap));
-   })
+   });
 
    return Object.assign({}, obj, mergeProps);
 }

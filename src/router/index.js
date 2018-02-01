@@ -8,36 +8,36 @@ import BarChart from '@/views/BarChart';
 // const Login = () => import(/* webpackChunkName: "Login" */ '@/views/Login');
 
 Vue.use(Router);
- 
+
 const router = new Router({
-	mode: 'history',
-	routes: [
-		{
-			path: '/',
-			name: 'basic',
-			component: Basic,
-			children: [
-				{
-					path: 'line',
-					name: 'lineChart',
-					component: LineChart
-				},
-				{
-					path: 'bar',
-					name: 'barChart',
-					component: BarChart
-				},
-				{
-					path: '*',
-					redirect: 'line'
-				}
-			]
-		},
-		{
-			path: '/*',
-			redirect: '/'
-		}
-	]
+   mode: 'history',
+   routes: [
+      {
+         path: '/',
+         name: 'basic',
+         component: Basic,
+         children: [
+            {
+               path: 'line',
+               name: 'lineChart',
+               component: LineChart
+            },
+            {
+               path: 'bar',
+               name: 'barChart',
+               component: BarChart
+            },
+            {
+               path: '*',
+               redirect: 'line'
+            }
+         ]
+      },
+      {
+         path: '/*',
+         redirect: '/'
+      }
+   ]
 });
 
 export default router;

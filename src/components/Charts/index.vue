@@ -14,7 +14,7 @@ export default {
    props: {
       renderer: {
          type: String,
-         required: false
+         required: false,
       },
       option: {
          type: Object,
@@ -22,18 +22,18 @@ export default {
       },
       notMerge: {
          type: Boolean,
-         default: false
+         default: false,
       },
       lazyUpdate: {
          type: Boolean,
-         default: false
-      }
+         default: false,
+      },
    },
    data() {
       return {
          chart: null,
          width: '100%',
-         height: '100%'
+         height: '100%',
       };
    },
    methods: {
@@ -41,7 +41,9 @@ export default {
          const renderer = this.renderer || 'canvas';
          console.log(renderer);
          this.chart = echarts.init(el, null, {
-            renderer, width: 'auto', height: 'auto'
+            renderer,
+            width: 'auto',
+            height: 'auto',
          });
       },
       setOption(option) {
@@ -51,7 +53,7 @@ export default {
 
          const notMerge = this.notMerge;
          const lazyUpdate = this.lazyUpdate;
-         
+
          this.chart.setOption(option, notMerge, lazyUpdate);
       },
       dispose() {
@@ -67,15 +69,15 @@ export default {
       },
       getInstance() {
          return this.chart;
-      }
+      },
    },
    mounted() {
-      this.$nextTick(function () {
+      this.$nextTick(function() {
          console.log('did mount');
          this.initChart(this.$el);
          this.setOption(this.option);
          window.addEventListener('resize', throttle(this.resize, 100));
-      })
+      });
    },
    beforeDestroy() {
       this.dispose();
@@ -84,8 +86,8 @@ export default {
       option(newOpt) {
          console.log('update config');
          this.setOption(newOpt);
-      }
-   }
+      },
+   },
 };
 </script>
 

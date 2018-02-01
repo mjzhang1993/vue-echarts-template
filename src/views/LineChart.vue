@@ -23,11 +23,11 @@ export default {
             title: { text: 'Beijing AQI', subtext: '模拟数据' },
             tooltip: {
                trigger: 'axis',
-               axisPointer: { type: 'cross', axis: 'y', snap: true }
+               axisPointer: { type: 'cross', axis: 'y', snap: true },
             },
             dataset: {
                // 提供一份数据。
-               source: this.currentData
+               source: this.currentData,
             },
             // 声明一个 X 轴，类目轴（category）。默认情况下，类目轴对应到 dataset 第一列。
             xAxis: { type: 'category' },
@@ -38,12 +38,12 @@ export default {
                feature: {
                   saveAsImage: {},
                   restore: {},
-                  magicType: { type: ['line', 'bar'] }
-               }
+                  magicType: { type: ['line', 'bar'] },
+               },
             },
             dataZoom: [
                { type: 'slider', start: 0, end: 10 },
-               { type: 'inside', start: 0, end: 10 }
+               { type: 'inside', start: 0, end: 10 },
             ],
             visualMap: {
                type: 'continuous',
@@ -52,7 +52,7 @@ export default {
                range: [0, 400],
                calculable: true,
                inRange: { color: ['#ffde33', '#cc0033', '#660099'] },
-               outOfRange: { color: '#999' }
+               outOfRange: { color: '#999' },
             },
             // 声明多个系列，默认情况下，每个系列会自动对应到 dataset 的每一列。
             series: [
@@ -77,13 +77,13 @@ export default {
                      // 图形上文本标签
                      show: true,
                      position: 'insideTop',
-                     fontSize: 10
+                     fontSize: 10,
                   },
                   encode: {
                      // 可以定义 data 的哪个维度被编码成什么
                      x: 0,
                      y: 1,
-                     tooltip: [0, 1]
+                     tooltip: [0, 1],
                   },
                   seriesLayoutBy: 'column', // 将行或者列对应为系列
                   datasetIndex: 0, // 指定使用哪个 dataset
@@ -91,43 +91,41 @@ export default {
                      // 标记的图形
                      symbol: 'arrow',
                      symbolSize: 30,
-                     data: [{ name: '最大值', type: 'max' }]
+                     data: [{ name: '最大值', type: 'max' }],
                   },
                   markLine: {
                      // 图表标线
                      symbol: 'arrow',
                      precision: 0, // 精度
                      label: {
-                        position: 'start'
+                        position: 'start',
                      },
                      data: [
                         {
-                           yAxis: 50
+                           yAxis: 50,
                         },
                         {
-                           yAxis: 100
+                           yAxis: 100,
                         },
                         {
-                           yAxis: 150
+                           yAxis: 150,
                         },
                         {
-                           yAxis: 200
+                           yAxis: 200,
                         },
                         {
-                           yAxis: 300
-                        }
-                     ]
+                           yAxis: 300,
+                        },
+                     ],
                   },
-                  markArea: {
-                     
-                  }
-               }
-            ]
+                  markArea: {},
+               },
+            ],
          };
-      }
+      },
    },
    methods: {
-      ...mapActions('charts', ['changeData'])
+      ...mapActions('charts', ['changeData']),
    },
    async beforeMount() {
       const path = '/line';
@@ -136,7 +134,7 @@ export default {
       await this.changeData({ path, key });
    },
    // config 是引用组件时传入的组件配置，内容相当于 this.config
-   components: { Chart }
+   components: { Chart },
 };
 </script>
 

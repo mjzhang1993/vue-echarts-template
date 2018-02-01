@@ -4,7 +4,7 @@
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 sudo yarn install
 
@@ -17,7 +17,7 @@ yarn run build
 # build for production and view the bundle analyzer report
 yarn run build --report
 
-# run dev server
+# run dev server 开发用服务器
 yarn run server
 ```
 
@@ -31,4 +31,5 @@ yarn config set registry https://registry.npm.taobao.org
 ```
 
 ## 发布
+
 > 拷贝 /dist 文件夹下所有文件到服务器即可，需要设置 访问任意页面路径，路由都指向根页面根目录

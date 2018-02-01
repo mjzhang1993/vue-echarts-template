@@ -25,10 +25,10 @@ export default {
    data() {
       return {
          isOpen: true,
-         title: 'this is title'
+         title: 'this is title',
       };
    },
-   components: { SideBar }
+   components: { SideBar },
 };
 </script>
 

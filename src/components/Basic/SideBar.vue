@@ -13,12 +13,10 @@ export default {
    name: 'side-bar',
    data() {
       return {
-         routePaths: [
-            'bar', 'line', 'pie'
-         ]
-      }
-   }
-}
+         routePaths: ['bar', 'line', 'pie'],
+      };
+   },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -41,7 +39,7 @@ export default {
       border-radius: 4px;
       cursor: pointer;
       transform: scale(1, 1);
-      transition: all .1s ease-in-out;
+      transition: all 0.1s ease-in-out;
       a {
          display: flex;
          color: #fff;
@@ -50,10 +48,9 @@ export default {
          justify-content: center;
          align-items: center;
       }
-      &:hover{
+      &:hover {
          transform: scale(1.05, 1.05);
       }
    }
 }
-
 </style>

@@ -24,16 +24,16 @@ class FmDate {
    }
    formate(template) {
       if (!template) {
-         return `${Object.values(this.dateMap).join('.')} ${Object.values(this.timeMap).join(':')}`
+         return `${Object.values(this.dateMap).join('.')} ${Object.values(this.timeMap).join(':')}`;
       }
       const regs = this.regTest();
 
-      Object.keys(regs.duble).forEach((attr) => {
-         template = template.replace(attr, regs.duble[attr]())
-      })
-      Object.keys(regs.single).forEach((attr) => {
-         template = template.replace(attr, regs.single[attr]())
-      })
+      Object.keys(regs.duble).forEach(attr => {
+         template = template.replace(attr, regs.duble[attr]());
+      });
+      Object.keys(regs.single).forEach(attr => {
+         template = template.replace(attr, regs.single[attr]());
+      });
       return template;
    }
    regTest() {
@@ -55,7 +55,7 @@ class FmDate {
             ss: () => this.addToDecade(this.timeMap.s),
             WW: () => this.changeWeekToChinese(this.W)
          }
-      }
+      };
    }
    changeWeekToChinese(week) {
       const map = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
