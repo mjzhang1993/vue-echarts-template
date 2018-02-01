@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Basic from '@/views/Basic';
 import LineChart from '@/views/LineChart';
 import BarChart from '@/views/BarChart';
+import PieChart from '@/views/PieChart';
 
 // 类似的方式实现按需加载
 // const Login = () => import(/* webpackChunkName: "Login" */ '@/views/Login');
@@ -26,6 +27,11 @@ const router = new Router({
                path: 'bar',
                name: 'barChart',
                component: BarChart
+            },
+            {
+               path: 'pie',
+               name: 'pieChart',
+               component: PieChart
             },
             {
                path: '*',

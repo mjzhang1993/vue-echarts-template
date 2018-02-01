@@ -1,3 +1,4 @@
+<!-- ECharts -- Line -- 折线图、面积图  -->
 <template>
    <Chart :renderer="renderer" :option="option"/>
 </template>
@@ -95,7 +96,7 @@ export default {
                   },
                   markLine: {
                      // 图表标线
-                     symbol: 'arrow',
+                     symbol: [undefined, 'arrow'],
                      precision: 0, // 精度
                      label: {
                         position: 'start',
@@ -119,6 +120,21 @@ export default {
                      ],
                   },
                   markArea: {},
+                  areaStyle: { // 区域填充样式
+                     color: {
+                        type: 'linear',
+                        x: 0,
+                        y: 0,
+                        x2: 1,
+                        y2: 1,
+                        colorStops: [{
+                           offset: 0, color: '#ffde33' // 0% 处的颜色
+                        }, {
+                           offset: 1, color: '#660099' // 100% 处的颜色
+                        }],
+                        globalCoord: false // 缺省为 false
+                     }
+                  }
                },
             ],
          };

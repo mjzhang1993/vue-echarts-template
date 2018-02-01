@@ -8,7 +8,8 @@ export default {
    namespaced: true,
    state: {
       line: [[]],
-      bar: [[]]
+      bar: [[]],
+      pie: [[]]
    },
    getters: {},
    mutations: {

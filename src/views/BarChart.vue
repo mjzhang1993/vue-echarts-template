@@ -1,3 +1,4 @@
+<!-- ECharts -- Bar -- 柱形图 -->
 <template>
    <Chart :renderer="renderer" :option="option"/>
 </template>
