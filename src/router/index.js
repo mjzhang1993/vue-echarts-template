@@ -4,6 +4,9 @@ import Basic from '@/views/Basic';
 import LineChart from '@/views/LineChart';
 import BarChart from '@/views/BarChart';
 import PieChart from '@/views/PieChart';
+import ScatterChart from '@/views/ScatterChart';
+import RadarChart from '@/views/RadarChart';
+import TreeChart from '@/views/TreeChart';
 
 // 类似的方式实现按需加载
 // const Login = () => import(/* webpackChunkName: "Login" */ '@/views/Login');
@@ -32,6 +35,21 @@ const router = new Router({
                path: 'pie',
                name: 'pieChart',
                component: PieChart
+            },
+            {
+               path: 'scatter',
+               name: 'scatterChart',
+               component: ScatterChart
+            },
+            {
+               path: 'radar',
+               name: 'radarChart',
+               component: RadarChart
+            },
+            {
+               path: 'tree',
+               name: 'treeChart',
+               component: TreeChart
             },
             {
                path: '*',

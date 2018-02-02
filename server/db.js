@@ -57,9 +57,85 @@ module.exports = function () {
       return {cate, total, nightingale};
    }());
    
+   const scatter = (function () {
+      const years = Random.range(1850, 2040, 10 );
+      const oldCitys = Mock.mock({
+         'content|20': ['@province']
+      }).content;
+      const citys = [...new Set(oldCitys)];
+   
+      const data = years.map(year => {
+         return citys.map(city => {
+            return [
+               Random.natural(300, 20000),
+               Random.float(10, 120, 0, 2),
+               Random.natural(100000, 100000000),
+               city
+            ];
+         });
+      });
+      
+      return {timeRange: years, data};
+   }());
+   
+   const radar = (function () {
+      const provinces = Mock.mock({
+         'content|3-8': ['@province']
+      }).content;
+      let data = [];
+      
+      [...new Set(provinces)].forEach(province => {
+         data.push({
+            province,
+            data: Mock.mock({
+               'content|20-50': [
+                  [
+                     '@natural(10, 150)',
+                     '@natural(10, 200)',
+                     '@natural(10, 200)',
+                     '@float(0, 5, 2, 2)',
+                     '@natural(10, 120)',
+                     '@natural(0, 100)',
+                     '@id'
+                  ]
+               ]
+            }).content
+         })
+      });
+      
+      return data;
+   }());
+   
+   
+   
+   const tree = (function () {
+      const template = {
+         name: '@name',
+         value: '@natural(0, 10000)'
+      };
+      
+      const data = Mock.mock({
+         ...template,
+         'children|2-4': [{
+            ...template,
+            'children|0-8': [{
+               ...template,
+               'children|0-10': [{
+                  ...template
+               }]
+            }]
+         }]
+      });
+      
+      return data;
+   }());
+   
    return {
       line,
       bar,
-      pie
+      pie,
+      scatter,
+      radar,
+      tree
    };
 };

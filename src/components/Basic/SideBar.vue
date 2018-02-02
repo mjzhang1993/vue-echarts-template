@@ -1,8 +1,8 @@
 <template>
    <ul class="menu-container">
-      <li class="menu-item" v-for="path in routePaths" :key="path">
-         <router-link :to="{path}">
-            {{path.toUpperCase()}}
+      <li class="menu-item" v-for="item in routePaths" :key="item.path">
+         <router-link :to="{path: item.path}">
+            {{item.path.toUpperCase() + `（${item.name}）`}}
          </router-link>
       </li>
    </ul>
@@ -13,7 +13,15 @@ export default {
    name: 'side-bar',
    data() {
       return {
-         routePaths: ['bar', 'line', 'pie'],
+         // routePaths: ['bar', 'line', 'pie', ''],
+         routePaths: [
+            {path: 'bar', name: '柱形图'},
+            {path: 'line', name: '折线图'},
+            {path: 'pie', name: '饼图'},
+            {path: 'scatter', name: '散点图'},
+            {path: 'radar', name: '雷达图'},
+            {path: 'tree', name: '树图'}
+         ]
       };
    },
 };
@@ -27,13 +35,12 @@ export default {
    padding: 10px 10px;
    margin: 0;
    background-color: #333;
-   overflow: auto;
+   overflow-y: auto;
    li {
       list-style: none;
       background-color: #888;
       height: 50px;
       display: flex;
-      // border-bottom: 1px dashed darkgray;
       box-shadow: 0px 0px 20px rgba(238, 235, 235, 0.2);
       margin: 10px 0px;
       border-radius: 4px;

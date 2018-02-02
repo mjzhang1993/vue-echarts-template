@@ -61,7 +61,7 @@ export default {
    position: relative;
 }
 .main-sidebar {
-   width: 150px;
+   width: 200px;
    height: 100%;
 }
 .main-charts-content {

@@ -9,7 +9,17 @@ export default {
    state: {
       line: [[]],
       bar: [[]],
-      pie: [[]]
+      pie: [[]],
+      scatter: {
+         timeRange: [],
+         data: [[[]]]
+      },
+      radar: [],
+      tree: {
+         name: null,
+         value: null,
+         children: null
+      }
    },
    getters: {},
    mutations: {
