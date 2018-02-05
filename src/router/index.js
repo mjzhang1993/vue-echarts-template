@@ -7,6 +7,7 @@ import PieChart from '@/views/PieChart';
 import ScatterChart from '@/views/ScatterChart';
 import RadarChart from '@/views/RadarChart';
 import TreeChart from '@/views/TreeChart';
+import TreeMapChart from '@/views/TreeMapChart';
 
 // 类似的方式实现按需加载
 // const Login = () => import(/* webpackChunkName: "Login" */ '@/views/Login');
@@ -50,6 +51,11 @@ const router = new Router({
                path: 'tree',
                name: 'treeChart',
                component: TreeChart
+            },
+            {
+               path: 'treemap',
+               name: 'treemapChart',
+               component: TreeMapChart
             },
             {
                path: '*',

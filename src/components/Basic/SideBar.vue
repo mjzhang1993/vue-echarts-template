@@ -13,14 +13,14 @@ export default {
    name: 'side-bar',
    data() {
       return {
-         // routePaths: ['bar', 'line', 'pie', ''],
          routePaths: [
             {path: 'bar', name: '柱形图'},
             {path: 'line', name: '折线图'},
             {path: 'pie', name: '饼图'},
             {path: 'scatter', name: '散点图'},
             {path: 'radar', name: '雷达图'},
-            {path: 'tree', name: '树图'}
+            {path: 'tree', name: '树图'},
+            {path: 'treemap', name: '面积树图'},
          ]
       };
    },

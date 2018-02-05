@@ -1,4 +1,4 @@
-<!-- ECharts -- Scatter -- 散点图 -->
+<!-- ECharts -- Tree -- 树型图 -->
 <template>
    <Chart :renderer="renderer" :option="option"/>
 </template>
@@ -39,7 +39,7 @@
                      orient: 'horizontal', // 方向
                      expandAndCollapse: true, // 子树的折叠和展开交互
                      initialTreeDepth: 3, // 初始展开层级
-                     data: [this.currentData]
+                     data: this.currentData
                   }
                ]
             };

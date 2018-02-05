@@ -1,5 +1,5 @@
 // mock.js 配置假数据
-
+const fs = require('fs');
 const Mock = require('mockjs');
 
 const Random = Mock.Random;
@@ -106,8 +106,6 @@ module.exports = function () {
       return data;
    }());
    
-   
-   
    const tree = (function () {
       const template = {
          name: '@name',
@@ -127,6 +125,52 @@ module.exports = function () {
          }]
       });
       
+      return [data];
+   }());
+   
+   const treemap = (function () {
+      const getDirSize = function (children) {
+         let size = 0;
+         children.forEach(c => size += c.value);
+         
+         return size;
+      };
+      const ignoreDir = function (file, dirs) {
+         return dirs.every(dir => file !== dir);
+      };
+      
+      const readDIR = function readDIR(readPath) {
+         const files = fs.readdirSync(readPath);
+         const ignoreDirs = [
+            'node_modules', '.DS_Store', '.vscode', '.idea', 'dist', '.git', 'yarn.lock'
+         ];
+         let children = [];
+      
+         files.forEach(file => {
+            if (ignoreDir(file, ignoreDirs)) {
+               const curPath = readPath + file;
+               const stats = fs.statSync(curPath);
+               let curData = {
+                  name: file,
+                  path: curPath,
+                  value: stats.size
+               };
+               
+               if (stats.isDirectory()) {
+                  // 目录
+                  curData.children = readDIR(curPath + '/');
+                  curData.value = getDirSize(curData.children);
+               }
+         
+               children.push(curData);
+            }
+         });
+         
+         return children;
+      };
+      
+      const data = readDIR('./');
+      
       return data;
    }());
    
@@ -136,6 +180,7 @@ module.exports = function () {
       pie,
       scatter,
       radar,
-      tree
+      tree,
+      treemap
    };
 };

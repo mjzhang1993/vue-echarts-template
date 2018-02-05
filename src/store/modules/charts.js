@@ -15,11 +15,12 @@ export default {
          data: [[[]]]
       },
       radar: [],
-      tree: {
+      tree: [{
          name: null,
          value: null,
          children: null
-      }
+      }],
+      treemap: []
    },
    getters: {},
    mutations: {
