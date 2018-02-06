@@ -21,6 +21,9 @@ export default {
             {path: 'radar', name: '雷达图'},
             {path: 'tree', name: '树图'},
             {path: 'treemap', name: '面积树图'},
+            {path: 'sunburst', name: '旭日图'},
+            {path: 'boxplot', name: '箱型图'},
+            {path: 'candlestick', name: 'K线图'}
          ]
       };
    },

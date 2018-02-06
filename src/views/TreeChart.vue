@@ -54,7 +54,6 @@
          
          await this.changeData({ path, key });
       },
-      // config 是引用组件时传入的组件配置，内容相当于 this.config
       components: { Chart },
    }
 </script>

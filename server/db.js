@@ -93,7 +93,7 @@ module.exports = function () {
                      '@natural(10, 150)',
                      '@natural(10, 200)',
                      '@natural(10, 200)',
-                     '@float(0, 5, 2, 2)',
+                     '@float(0, 4, 2, 2)',
                      '@natural(10, 120)',
                      '@natural(0, 100)',
                      '@id'
@@ -128,7 +128,7 @@ module.exports = function () {
       return [data];
    }());
    
-   const treemap = (function () {
+   const treemap = function (rootPath) {
       const getDirSize = function (children) {
          let size = 0;
          children.forEach(c => size += c.value);
@@ -169,7 +169,36 @@ module.exports = function () {
          return children;
       };
       
-      const data = readDIR('./');
+      const data = readDIR(rootPath || './');
+      
+      return data;
+   };
+   
+   const sunburst = treemap('./src/');
+   
+   const boxplot = (function () {
+      const getRange = function () {
+         const start = Math.floor(Math.random()*200 + 10);
+         const step = Math.floor(Math.random()*200 + 1);
+         const end = start + step;
+         
+         return [start, end];
+      };
+      const getNum = function () {
+         const range = getRange();
+         const item = Mock.mock({
+            'ct|30': [`@integer(${range[0]}, ${range[1]})`]
+         }).ct;
+         item.push(Math.floor(Math.random()*400));
+         
+         return item;
+      };
+      const len = Random.natural(5, 15);
+      let data = [];
+      
+      for (let i = 0; i < len; i++) {
+         data.push(getNum());
+      }
       
       return data;
    }());
@@ -181,6 +210,8 @@ module.exports = function () {
       scatter,
       radar,
       tree,
-      treemap
+      treemap: treemap(),
+      sunburst,
+      boxplot
    };
 };

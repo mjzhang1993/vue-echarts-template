@@ -8,6 +8,9 @@ import ScatterChart from '@/views/ScatterChart';
 import RadarChart from '@/views/RadarChart';
 import TreeChart from '@/views/TreeChart';
 import TreeMapChart from '@/views/TreeMapChart';
+import SunburstChart from '@/views/SunburstChart';
+import BoxplotChart from '@/views/BoxplotChart';
+import CandlestickChart from '@/views/CandlestickChart';
 
 // 类似的方式实现按需加载
 // const Login = () => import(/* webpackChunkName: "Login" */ '@/views/Login');
@@ -56,6 +59,21 @@ const router = new Router({
                path: 'treemap',
                name: 'treemapChart',
                component: TreeMapChart
+            },
+            {
+               path: 'sunburst',
+               name: 'sunburstChart',
+               component: SunburstChart
+            },
+            {
+               path: 'boxplot',
+               name: 'boxplotChart',
+               component: BoxplotChart
+            },
+            {
+               path: 'candlestick',
+               name: 'candlestickChart',
+               component: CandlestickChart
             },
             {
                path: '*',

@@ -20,7 +20,10 @@ export default {
          value: null,
          children: null
       }],
-      treemap: []
+      treemap: [],
+      sunburst: [],
+      boxplot: [[]],
+      candlestick: [[]]
    },
    getters: {},
    mutations: {
