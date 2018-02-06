@@ -1,7 +1,7 @@
 <template>
    <ul class="menu-container">
       <li class="menu-item" v-for="item in routePaths" :key="item.path">
-         <router-link :to="{path: item.path}">
+         <router-link :to="{path: item.path, query: {name: item.name}}">
             {{item.path.toUpperCase() + `（${item.name}）`}}
          </router-link>
       </li>

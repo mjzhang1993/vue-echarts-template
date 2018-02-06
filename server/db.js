@@ -203,6 +203,50 @@ module.exports = function () {
       return data;
    }());
    
+   const candlestick = (function () {
+      // 做的假数据
+      const getData = function (initial) {
+         const start = initial - Math.floor(Math.random()*100);
+         const end = initial + Math.floor(Math.random()*400);
+         const basic = Mock.mock({
+            'basic|30': [`@float(${start}, ${end}, 2, 2)`]
+         }).basic;
+         
+         return basic;
+      };
+      const changeToDate = function (timestamp) {
+         const current = new Date(+timestamp);
+         const retVal = [
+            current.getFullYear(),
+            current.getMonth() + 1,
+            current.getDate()
+         ].join('-');
+         
+         return retVal;
+      };
+      const sortFun = (a, b) => a - b;
+      const len = Random.natural(100, 300);
+      const dateRange = 24 * 60 * 60 * 1000;
+      let startTime = new Date(1990, 0, 1).getTime();
+      let data = [];
+      let last = 10234;
+      
+      for (let i = 0; i < len; i++) {
+         const basic = getData(last);
+         const open = basic[0];
+         const close = basic[basic.length - 1];
+         const computed = basic.sort(sortFun);
+         const low = computed[computed.length - 1];
+         const high = computed[0];
+         const date = changeToDate(startTime);
+         startTime = startTime + dateRange;
+         last = computed[Math.floor(computed.length / 5)]; // 5 这个值是任意的
+         data.push([date, open, close, low, high]);
+      }
+      
+      return data;
+   }());
+   
    return {
       line,
       bar,
@@ -212,6 +256,7 @@ module.exports = function () {
       tree,
       treemap: treemap(),
       sunburst,
-      boxplot
+      boxplot,
+      candlestick
    };
 };
